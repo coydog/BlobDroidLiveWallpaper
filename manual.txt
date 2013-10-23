@@ -1,0 +1,107 @@
+
+To configure settings (in Android 4.2.2), tap and hold your Android desktop
+background.
+    - select "Set wallpaper" 
+    - choose from Home Screen, Lock Screen, or both 
+    - select "Live Wallpapers"
+    - choose "BlobDroid Wallpaper" from the list.
+
+You should now see a demo of the animated wallpaper. From here, choose
+"Settings" and configure the wallpaper as you like. You can hit the "back"
+button on your device to see your changes. Once you are satisfied, be sure to
+tap "Set wallpaper" from the demo screen, otherwise your changes will not be
+applied.
+
+Several preset themes are included, and their colors may be overridden. See
+below for a full list.
+
+Colors settings may be specified with hexadecimal RGB values (eg. "#00FA00"
+for bright green). Since it be tedious to enter hex values without immediately
+seeing your changes, a "Touch Color Selection" feature has been included (see
+below). Certain color names recognized by the Android platform may also be
+used (eg. "green", "cyan", "white"), but use of this feature is not
+recommended.
+
+Following are a list of the available settings with notes on their usage:
+
+    - "Touch Color Selection"
+
+        This setting allows a selected color value to be manipulated via the
+        touchscreen. When enabled, the top 2/3 of the display may be used to
+        set or fade the selected color value. You can think of the screen as
+        divided into three sliders or faders, side by side: red on the left,
+        blue in the middle, and green on the right. Touching the top of the
+        screen sets the color value to its maximum, and sliding your finger
+        towards the bottom sets the value to its minimum.
+
+        For example, if you want white, touch the top left corner, top middle,
+        and top right corner of the screen. For black, slide your finger down
+        to 2/3 from the bottom of the screen, once on the left, once in the
+        middle, and once on the right. The bottom third of the screen is
+        disabled so that you can select "Settings" and set "Touch Color
+        Selection" back to "None" once you have found a color you like.
+
+        Please note that "Touch Color Selection" may be left enabled while the
+        wallpaper is running, allowing the color to change dynamically as you
+        use your device.
+
+    The available "Touch Color Selection" options are as follows:
+
+    - "None": 		 Default value. Touch color selection is disabled.
+
+    - "Blob center": Touch changes color at the center of blobs, and the
+                     edge of the screen border. Note that depending on the
+                     individual theme, "Blob glow" might have a more
+                     noticeable effect.
+
+    - "Blob glow":	 Touch changes color of the glow radiating from blobs
+                     and the screen border
+
+        - "Background:	 Touch changes the background color. Please note that
+                         with certain themes such as "Wiggle" and "Electric
+                         charge," what appears to be the background is
+                         actually the blob center, and vice-versa.
+                         
+    - "Center color"
+    - "Glow color"
+    - "Background color"
+
+        For each of these settings, a color may be specified in RGB
+        hexadecimal format, eg. "#RRGGBB". If you are not comfortable using
+        hexadecimal values, "Touch Color Selection" should be used to select a
+        color visually. The changes you make with "Touch Color Selection" will
+        automatically be applied to these three settings.
+
+    - "Use custom colors"
+
+        This checkbox is used to select between a theme's default colors and
+        your custom colors. This setting is not required if "Touch Color
+        Selection" is enabled.
+
+    - "Theme"
+
+        Several themes are provided:
+
+        - "Default":            Several small blue-white blobs on a black background
+                                with a border.
+
+        - "Electric charge" 	Large black blobs with blue borders, mostly
+                                obscuring a light background.
+
+        - "Fire":               Many small orange blobs on a red background
+                                like bubbling lava.
+
+        - "Glow worms":         Many tiny yellow and blue dots which light up
+                                as they cross paths.
+
+        - "Green Contour":      Three large "hollow" blobs interacting with a
+                                green border.
+
+        - "Lonely blue":        A lone blue-white dot on a black background,
+                                with a border.
+
+        - "Wiggle":             The author's personal favorite. Background is
+                                nearly obscured by many black blobs, producing
+                                a rippling effect. Set "Touch Color
+                                Interaction" to "Blob glow" for a dramatic
+                                effect.

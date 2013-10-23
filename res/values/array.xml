@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="presets">
+		<item name="default">Default</item>
+		<!--<item name="dots">Dots</item>-->
+		<item name="electricCharge">Electric charge</item>
+		<item name="fire">Fire</item>
+		<!--<item name="flyingDirt">Flying dirt</item>-->
+		<item name="glowWorms">Glow worms</item>
+		<item name="greenContour">Green contour</item>
+		<item name="lonelyBlue">Lonely blue</item>
+		<!--<item name="noise">Noise</item> -->
+		<!--<item name="orange">Orange</item>-->
+		<item name="wiggle">Wiggle</item>
+		<item name="yellow">Yellow</item>
+	</string-array>
+	<string-array name="presetValues">
+		<item name="default">default</item>
+		<!--<item name="dots">dots</item>-->
+		<item name="electricCharge">electricCharge</item>
+		<item name="fire">fire</item>
+		<!--<item name="flyingDirt">flyingDirt</item>-->
+		<item name="glowWorms">glowWorms</item>
+		<item name="greenContour">greenContour</item>
+		<item name="lonelyBlue">lonelyBlue</item>
+		<!-- <item name="noise">noise</item> -->
+		<!--<item name="orange">orange</item>-->
+		<item name="wiggle">wiggle</item>
+		<item name="yellow">yellow</item>
+	</string-array>
+
+	<string-array name="touchTypes">
+		<item name="none">None</item>
+		<item name="center">Blob center</item>
+		<item name="glow">Blob glow</item>
+		<item name="background">Background</item>
+	</string-array>
+	<string-array name="touchTypeValues">
+		<item name="none">none</item>
+		<item name="center">center</item>
+		<item name="glow">glow</item>
+		<item name="background">background</item>
+	</string-array>
+</resources>

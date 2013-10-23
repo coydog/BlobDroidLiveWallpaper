@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">	
+	<!--<PreferenceCategory
+		android:title="Touch Interaction"
+		android:key="categoryTouch">
+			<CheckBoxPreference 
+				android:key="touchCenter"
+				android:title="Blob center"></CheckBoxPreference>
+			<CheckBoxPreference
+				android:key="touchGlow"
+				android:title="Blob glow"></CheckBoxPreference>
+			<CheckBoxPreference
+				android:key="touchBackground"
+				android:title="Background"></CheckBoxPreference>
+	</PreferenceCategory> -->
+	<ListPreference
+		android:key="touchType"
+		android:title="Touch Color Selection"
+		android:defaultValue="none"
+		android:entries="@array/touchTypes"
+		android:entryValues="@array/touchTypeValues"/>
+	<EditTextPreference
+		android:key="colorCenter"
+		android:title="Center color"
+		android:defaultValue="FEFEFE"></EditTextPreference>
+	<EditTextPreference
+		android:key="colorGlow"
+		android:title="Glow color"
+		android:defaultValue="0000FF"></EditTextPreference>
+	<EditTextPreference
+		android:key="colorBackground"
+		android:title="Background color"
+		android:defaultValue="000000"></EditTextPreference>
+	<CheckBoxPreference
+		android:key="useCustomColors"
+		android:title="Use custom colors"></CheckBoxPreference>
+	<!--<EditTextPreference 
+		android:key="numberOfBlobs"
+		android:title="Number of Blobs"
+		android:defaultValue="5"></EditTextPreference>-->
+		<!-- TODO: Do I want a dependency on custom settings in use? -->
+	<ListPreference
+		android:key="preset"
+		android:title="Theme"
+		android:defaultValue="default"
+		android:entries="@array/presets"
+		android:entryValues="@array/presetValues"/>
+</PreferenceScreen> 
