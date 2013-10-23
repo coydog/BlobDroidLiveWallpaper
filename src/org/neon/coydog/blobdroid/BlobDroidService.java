@@ -23,7 +23,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 
 
 public class BlobDroidService extends WallpaperService {
-
 	// TODO: move into prefs?
 	//static int FRAMERATE = 120;
 	static final int SCALEFACTOR = 4;
@@ -56,7 +55,7 @@ public class BlobDroidService extends WallpaperService {
 		}
 
 		class BlobSettings implements SharedPreferences.OnSharedPreferenceChangeListener {
-			// TODO: Should use R.array.*? If so, "default" is reserved keyword right?
+			// TODO: Should use R.array.*? 
 			static final String KEY_PRESET = "preset";
 			static final String KEY_TOUCH_TYPE ="touchType";
 			static final String KEY_COLOR_CENTER = "colorCenter";
@@ -623,11 +622,9 @@ public class BlobDroidService extends WallpaperService {
 					for (i = 0; i < MAX_N_BLOBS; i++) {
 						//d = andom(); // ARRRGH! TODO
 						blobs[i] = new Blob();
-						/*blobs[i].vx = r.nextInt() % 1280 + 80; // ARRRGH! TODO*/
-						blobs[i].vx = r.nextInt() % SPEED_THRESHOLD_X; // ARRRGH! TODO
+						blobs[i].vx = r.nextInt() % SPEED_THRESHOLD_X;
 
 						//d = Math.random();
-						/*blobs[i].vy = r.nextInt() % 1280 + 80;*/
 						blobs[i].vy = r.nextInt() % SPEED_THRESHOLD_Y;
 						/*int middle = 512;*/
 						blobs[i].x = MIDFACTOR_X; // TODO: calc independently
@@ -664,11 +661,10 @@ public class BlobDroidService extends WallpaperService {
 
 			int sineLookup(int a) {
 				return sine_table[a & 0xFFF]; // wrap table?
-				//return 0; // TODO: TROUBLESHOOTING FIRST FRAME!
 			}
 			
 			void moveBlobs() {
-				// TODO: from move() in original.
+				// from move() in original C implementation.
 				int i = 0;
 
 				if (mSettings.gravity) {
@@ -697,8 +693,6 @@ public class BlobDroidService extends WallpaperService {
 				
 				// number here is width or height divided by blob max?
 				for (i = 0; i < mSettings.numBlobs; i++)
-					// totally unsure - 16 might not be radius
-					/*putBlob(blobs[i].x / 16, blobs[i].y / 16); // TODO: was 16. BLOB_RADIUS?*/
 					putBlob(blobs[i].x / BLOB_RADIUS, blobs[i].y / BLOB_RADIUS); // TODO: was 16. BLOB_RADIUS?
 
 				frameClock++;
@@ -716,9 +710,9 @@ public class BlobDroidService extends WallpaperService {
 
 				bufOffset = (px - BLOB_RADIUS) + (py - BLOB_RADIUS) * RENDER_Y;
 
-				// I think the next block determines how much of blob to copy, leaving out edge
-				// if we're at the edge of our render grid. Not sure though.
-				if (px < BLOB_RADIUS) { // px is parameter X and sx is side X? start X? Sure, let's go with that.
+				// the next block determines how much of blob to copy, leaving out edge
+				// if we're at the edge of our render grid.
+				if (px < BLOB_RADIUS) { // px is parameter X and sx is side X? start X?
 					sx = BLOB_RADIUS + px;
 					blobOffset += BLOB_RADIUS - px;
 	 				bufOffset += BLOB_RADIUS - px;
@@ -762,66 +756,37 @@ public class BlobDroidService extends WallpaperService {
 			void show(Canvas canvas) {
 				int i = 0; 
 				float x, y;
-				//Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-				// TODO: TODO: TODO: !@!!@!@1 replace with utils.bmp
 				bmp = Bitmap.createBitmap(RENDER_X, RENDER_Y, Bitmap.Config.ARGB_8888);
 
-				//Bitmap bmp = Bitmap.createBitmap(RENDER_X, RENDER_Y, Bitmap.Config.ARGB_4444);
-				// TODO: replace short array with int array
-				//int[] tmp = new int[RENDER_SIZE];
 				int mapIndex;
 				for (i = 0; i < RENDER_SIZE; i++) {
 					mapIndex = buf[i] * (COLORMAP_SIZE-1) / CEILING;
 					pixels[i] = myColorMap[mapIndex]; 
 				}
-				//Bitmap bmp = Bitmap.createBitmap(tmp, RENDER_X, RENDER_Y, Bitmap.Config.ARGB_8888);
-
-				//float scaleX = RENDER_X / canvas.getWidth(), scaleY = RENDER_Y / canvas.getHeight();
-				//mtx.setScale(1, 1);
-
-				//bmp.eraseColor(0xFF000000);
 				bmp.setPixels(pixels, 0, RENDER_X, 0, 0, RENDER_X, RENDER_Y); 
-				/*int testWidth = bmp.getWidth();
-				int testHeight = bmp.getHeight();
-				int [] testBuf = new int[testWidth * testHeight];
-				int j;
-				int count = 0;
-				for (i = 0; i < testHeight; i++)
-					for (j = 0; j < testWidth; j++)
-						testBuf[count++] = bmp.getPixel(j, i);
-
-
-				int TestPixel = bmp.getPixel(31, 32);*/
+				//
 				// TODO: might be good to get these out of the render loop, but are they guarunteed not
 				// to change?
 				float scaleX = canvas.getWidth() / (bmp.getWidth());
 				float scaleY = canvas.getHeight() / bmp.getHeight();
 				scaleX = (float)canvas.getWidth() / (float)(bmp.getWidth());
 				scaleY = (float)canvas.getHeight() / (float)bmp.getHeight();
-				//Matrix mtx = new Matrix(); // moved to member
-				//mtx.reset();
-				//mtx.setScale(scaleX*2, scaleX*2);
 				mtx.setScale(scaleX, scaleY); // can we get this out of loop? See TODO above
-				//mtx.setScale((float)7.0, (float)5.0);
 
 				canvas.drawBitmap(bmp, mtx, null);
 			}
 
 			// experimental touch toy stuff
 			void changeColors(int glow, int center) {
-				//mSettings.colorCenter += mSettings.colorCenter & 0x00010101;
-				//mSettings.colorGlow += mSettings.colorGlow & 0x00010101;
-				//mSettings.colorCenter += mRandom.nextInt();
 				mSettings.colorGlow = glow;
 				mSettings.colorCenter = center;
-				//mSettings.colorBackground += mRandom.nextInt();
 				
 				buildColorMap();
 			}
 			void fadeColor(int fade, int id, int fadeType) {
 				if (fadeType != FADE_TYPE_NONE) {
 					int mask = 0xFFFFFF;
-					if (fadeType == FADE_TYPE_RED) // prevents black?
+					if (fadeType == FADE_TYPE_RED)
 						mask &= 0x00FFFF;
 					if (fadeType == FADE_TYPE_GREEN)
 						mask &= 0xFF00FF;
@@ -857,19 +822,7 @@ public class BlobDroidService extends WallpaperService {
 		private int count = 0; // for testing.
 
 		public BlobDroidEngine() {
-			// TODO: read in preferences; set members
-			// maybe generate sine table from here too?
-			//SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(BlobDroidService.this);
-			//settings.numBlobs = Integer.valueOf(prefs.getString("numberOfBlobs", "4")); // TODO 4? default?
-			
-			// TODO: set up colors, etc here.
-
 			handler.post(drawRunner);
-
-			// Do I start a thread here to render bitmap and post back to handler?
-			// Might run into thread sync issues unless we copy the bitmap :/
-			// Alternative is run in this thread, but how would we handle things like touch events?
-			//  ***with postDelayed(), post() or similar apparently.
 		}
     
 		@Override
@@ -898,7 +851,7 @@ public class BlobDroidService extends WallpaperService {
 
 		@Override
 		public void onTouchEvent(MotionEvent event) {
-			// TODO: trippy shit.
+			// trippy stuff here.
 			if (settings.touchEnabledCenter 
 					|| settings.touchEnabledGlow 
 					|| settings.touchEnabledBackground) 
@@ -925,7 +878,6 @@ public class BlobDroidService extends WallpaperService {
 				 * |_________|
 				 *
 				 */  
-				
 				// calculate fade magnitude based on Y position. In Android, Y starts
 				// at upper left. Flip and only cover top two thirds.
 				//percentY = 1.0 - percentY; // flip Y
@@ -985,7 +937,6 @@ public class BlobDroidService extends WallpaperService {
 					ed.apply();
 				}
 
-				//handler.post(drawRunner); // test code
 				super.onTouchEvent(event);
 			}
 		}
@@ -994,7 +945,6 @@ public class BlobDroidService extends WallpaperService {
 			// should be able to loop in UI thread by essentially posting this from itself.
 			// Kind of like recursion, but no stack growth. I guess removeCallbacks() prevents
 			// a backlog from forming?
-			//SurfaceHolder sh = getSurfaceHolder();
 			Canvas canvas = null;
 
 			try {
@@ -1003,9 +953,9 @@ public class BlobDroidService extends WallpaperService {
 					//canvas.drawColor(Color.BLACK + count++);
 					
 					try {
-					utils.moveBlobs();
-					utils.drawBlobs();
-					utils.show(canvas);
+						utils.moveBlobs();
+						utils.drawBlobs();
+						utils.show(canvas);
 					} catch (ArrayIndexOutOfBoundsException e){}
 				}
 			} finally {
